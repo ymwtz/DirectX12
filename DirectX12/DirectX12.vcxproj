@@ -150,12 +150,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="D3DApp.h" />
+    <ClInclude Include="D3DUtil.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="Initialize.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DApp.cpp" />
+    <ClCompile Include="D3DUtil.cpp" />
     <ClCompile Include="Initialize.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
