@@ -38,10 +38,10 @@
     <ClCompile Include="Initialize.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="D3DApp.cpp">
+    <ClCompile Include="D3DUtil.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="D3DUtil.cpp">
+    <ClCompile Include="D3DApp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
