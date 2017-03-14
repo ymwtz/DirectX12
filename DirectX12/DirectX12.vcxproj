@@ -22,7 +22,7 @@
     <ProjectGuid>{3A7577FD-CEB7-4CD4-8124-CFC6C0D407CC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>DirectX12</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="D3DApp.h" />
     <ClInclude Include="D3DUtil.h" />
+    <ClInclude Include="d3dx12.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="Initialize.h" />
     <ClInclude Include="stdafx.h" />

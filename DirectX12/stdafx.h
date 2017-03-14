@@ -12,6 +12,7 @@
 #include <DirectXPackedVector.h>
 #include <DirectXColors.h>
 #include <DirectXCollision.h>
+#include "d3dx12.h"
 #include <string>
 #include <memory>
 #include <algorithm>
