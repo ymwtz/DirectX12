@@ -15,16 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="GameTimer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="D3DApp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Initialize.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="D3DUtil.h">
@@ -33,18 +27,30 @@
     <ClInclude Include="d3dx12.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DDSTextureLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MathHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Initialize.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="D3DUtil.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="D3DApp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DDSTextureLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MathHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

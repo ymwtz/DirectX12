@@ -1,10 +1,53 @@
 #pragma once
 
-#include "stdafx.h"
+#include<Windows.h>
+#include<windowsx.h>
+#include<wrl.h>
+#include <dxgi1_4.h>
+#include <d3d12.h>
+#include <D3Dcompiler.h>
+#include <DirectXMath.h>
+#include <DirectXPackedVector.h>
+#include <DirectXColors.h>
+#include <DirectXCollision.h>
+#include <string>
+#include <memory>
+#include <algorithm>
+#include <vector>
+#include <array>
+#include <unordered_map>
+#include <cstdint>
+#include <fstream>
+#include <sstream>
+#include <cassert>
+#include "d3dx12.h"
+#include "DDSTextureLoader.h"
+#include "MathHelper.h"
 
 extern const int gNumFrameResources;
 
-//////////////////
+inline void d3dSetDebugName(IDXGIObject* obj, const char* name)
+{
+	if (obj)
+	{
+		obj->SetPrivateData(WKPDID_D3DDebugObjectName, lstrlenA(name), name);
+	}
+}
+inline void d3dSetDebugName(ID3D12Device* obj, const char* name)
+{
+	if (obj)
+	{
+		obj->SetPrivateData(WKPDID_D3DDebugObjectName, lstrlenA(name), name);
+	}
+}
+inline void d3dSetDebugName(ID3D12DeviceChild* obj, const char* name)
+{
+	if (obj)
+	{
+		obj->SetPrivateData(WKPDID_D3DDebugObjectName, lstrlenA(name), name);
+	}
+}
+
 inline std::wstring AnsiToWString(const std::string& str)
 {
 	WCHAR buffer[512];
@@ -12,14 +55,39 @@ inline std::wstring AnsiToWString(const std::string& str)
 	return std::wstring(buffer);
 }
 
-////////////////////////
+/*
+#if defined(_DEBUG)
+#ifndef Assert
+#define Assert(x, description)                                  \
+{                                                               \
+static bool ignoreAssert = false;                           \
+if(!ignoreAssert && !(x))                                   \
+{                                                           \
+Debug::AssertResult result = Debug::ShowAssertDialog(   \
+(L#x), description, AnsiToWString(__FILE__), __LINE__); \
+if(result == Debug::AssertIgnore)                           \
+{                                                           \
+ignoreAssert = true;                                    \
+}                                                           \
+else if(result == Debug::AssertBreak)           \
+{                                                           \
+__debugbreak();                                         \
+}                                                           \
+}                                                           \
+}
+#endif
+#else
+#ifndef Assert
+#define Assert(x, description)
+#endif
+#endif
+*/
+
 class d3dUtil
 {
 public:
 
 	static bool IsKeyDown(int vkeyCode);
-
-	static std::string ToString(HRESULT hr);
 
 	static UINT CalcConstantBufferByteSize(UINT byteSize)
 	{
@@ -199,7 +267,6 @@ struct Texture
 	Microsoft::WRL::ComPtr<ID3D12Resource> UploadHeap = nullptr;
 };
 
-
 #ifndef ThrowIfFailed
 #define ThrowIfFailed(x)                                              \
 {                                                                     \
@@ -207,4 +274,8 @@ struct Texture
     std::wstring wfn = AnsiToWString(__FILE__);                       \
     if(FAILED(hr__)) { throw DxException(hr__, L#x, wfn, __LINE__); } \
 }
+#endif
+
+#ifndef ReleaseCom
+#define ReleaseCom(x) { if(x){ x->Release(); x = 0; } }
 #endif
