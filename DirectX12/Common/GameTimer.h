@@ -1,6 +1,9 @@
-#pragma once
+//***************************************************************************************
+// GameTimer.h by Frank Luna (C) 2011 All Rights Reserved.
+//***************************************************************************************
 
-#include"D3DUtil.h"
+#ifndef GAMETIMER_H
+#define GAMETIMER_H
 
 class GameTimer
 {
@@ -27,3 +30,5 @@ private:
 
 	bool mStopped;
 };
+
+#endif // GAMETIMER_H

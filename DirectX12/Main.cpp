@@ -1,4 +1,4 @@
-#include"D3DApp.h"
+#include"Common\D3DApp.h"
 
 using namespace DirectX;
 
