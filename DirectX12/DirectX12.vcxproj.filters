@@ -18,24 +18,21 @@
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Common\D3DApp.cpp">
+    <ClCompile Include="Specific\Box\Box.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Common\D3DUtil.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Common\GameTimer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common\D3DApp.h">
+    <ClInclude Include="Specific\Box\Box.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Common\D3DUtil.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Common\GameTimer.h">
+    <ClInclude Include="Common\UploadBuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

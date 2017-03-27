@@ -149,15 +149,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Common\D3DApp.cpp" />
     <ClCompile Include="Common\D3DUtil.cpp" />
-    <ClCompile Include="Common\GameTimer.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Specific\Box\Box.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common\D3DApp.h" />
     <ClInclude Include="Common\D3DUtil.h" />
-    <ClInclude Include="Common\GameTimer.h" />
+    <ClInclude Include="Common\UploadBuffer.h" />
+    <ClInclude Include="Specific\Box\Box.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
