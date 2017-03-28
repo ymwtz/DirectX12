@@ -158,6 +158,9 @@
     <ClInclude Include="Common\UploadBuffer.h" />
     <ClInclude Include="Specific\Box\Box.h" />
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Specific\Box\shader\color.hlsl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
