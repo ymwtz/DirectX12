@@ -29,6 +29,27 @@ void BoxApp::OnResize()
 //
 void BoxApp::Update(const GameTimer & gt)
 {
+	//球坐标转换为笛卡尔坐标
+	float x = mRadius*sinf(mPhi)*cosf(mTheta);
+	float z = mRadius*sinf(mPhi)*cosf(mTheta);
+	float y = mRadius*cosf(mPhi);
+
+	//Build the view martix
+	XMVECTOR pos = XMVectorSet(x, y, z, 1.0f);
+	XMVECTOR target = XMVectorZero();
+	XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+
+	XMMATRIX view = XMMatrixLookAtLH(pos, target, up);
+	XMStoreFloat4x4(&mView, view);
+
+	XMMATRIX world = XMLoadFloat4x4(&mWorld);
+	XMMATRIX proj = XMLoadFloat4x4(&mProj);
+	XMMATRIX worldViewProj = world*view*proj;
+	
+	//用最新的world view proj矩阵update the costant buffer
+	ObjectConstants objConstants;
+	XMStoreFloat4x4(&objConstants.WorldViewProj, XMMatrixTranspose(worldViewProj));
+	mObjectCB->CopyData(0, objConstants);
 }
 
 //
@@ -71,7 +92,9 @@ void BoxApp::OnMouseUp(WPARAM btnState, int x, int y)
 {
 }
 
-//
+//////////
+//改变相机参数
+//////////
 void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 {
 	if ((btnState & MK_LBUTTON) != 0) {
