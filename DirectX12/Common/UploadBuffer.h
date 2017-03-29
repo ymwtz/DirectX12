@@ -39,6 +39,7 @@ public:
     UploadBuffer& operator=(const UploadBuffer& rhs) = delete;
     ~UploadBuffer()
     {
+		//释放前要先unmap
         if(mUploadBuffer != nullptr)
             mUploadBuffer->Unmap(0, nullptr);
 
@@ -50,6 +51,7 @@ public:
         return mUploadBuffer.Get();
     }
 
+	// copy data from system memory to the constant buffer
     void CopyData(int elementIndex, const T& data)
     {
         memcpy(&mMappedData[elementIndex*mElementByteSize], &data, sizeof(T));

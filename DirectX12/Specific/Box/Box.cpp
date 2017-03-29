@@ -49,12 +49,16 @@ void BoxApp::Draw(const GameTimer & gt)
 	mCommandList->IASetVertexBuffers(0, 1, &mBoxGeo->VertexBufferView());
 	//bind index buffer to input assembler stage
 	mCommandList->IASetIndexBuffer(&mBoxGeo->IndexBufferView());
+	//specify what kind of primitive the vertices define
+	//point, line lists or triangle lists
+	mCommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	//draw the vertices
 	mCommandList->DrawIndexedInstanced(
 		mBoxGeo->DrawArgs["box"].IndexCount,
 		1, 0, 0, 0
 	);
+
 }
 
 //
@@ -70,6 +74,32 @@ void BoxApp::OnMouseUp(WPARAM btnState, int x, int y)
 //
 void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 {
+	if ((btnState & MK_LBUTTON) != 0) {
+		//每移动一个像素，对应角度变化0.25°
+		float dx = XMConvertToRadians(0.25f*static_cast<float>(x - mLastMousePos.x));
+		float dy = XMConvertToRadians(0.25f*static_cast<float>(y - mLastMousePos.y));
+
+		//更新角度
+		mTheta += dx;
+		mPhi += dy;
+
+		//将φ限制在0-π内
+		mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi - 0.1f);
+	}
+	else if ((btnState&MK_RBUTTON) != 0) {
+		//每移动一个像素，对应场景中0.005个单位
+		float dx = 0.005f*static_cast<float>(x - mLastMousePos.x);
+		float dy = 0.005f*static_cast<float>(y - mLastMousePos.y);
+
+		//Update the camera radius
+		mRadius += dx - dy;
+
+		//将radius限制在3-15内
+		mRadius = MathHelper::Clamp(mRadius, 3.0f, 15.0f);
+	}
+
+	mLastMousePos.x = x;
+	mLastMousePos.y = y;
 }
 
 //
@@ -77,9 +107,15 @@ void BoxApp::BuildDescriptorHeaps()
 {
 }
 
-//
+/////////////
+//create constant buffer
+///////////
 void BoxApp::BuildConstantBuffers()
 {
+	mObjectCB = std::make_unique<UploadBuffer<ObjectConstants>>(md3dDevice.Get(), 1, true);
+
+	UINT elementByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(ObjectConstants));
+
 }
 
 //
@@ -90,6 +126,11 @@ void BoxApp::BuildRootSignature()
 //
 void BoxApp::BuildShadersAndInputLayout()
 {
+	//description of vertex structure
+	mInputLayout = {
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+	};
 }
 
 ////////////

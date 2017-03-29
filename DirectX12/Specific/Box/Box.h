@@ -13,17 +13,17 @@ struct Vertex
 	XMFLOAT4 Color;
 };
 
+///////////
 //
-//
-//
+///////////
 struct ObjectConstants
 {
 	XMFLOAT4X4 WorldViewProj = MathHelper::Identity4x4();
 };
 
+/////////
 //
-//
-//
+/////////
 class BoxApp : public D3DApp
 {
 public:
