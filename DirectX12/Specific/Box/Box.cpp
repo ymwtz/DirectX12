@@ -19,7 +19,7 @@ BoxApp::~BoxApp()
 //
 bool BoxApp::Initialize()
 {
-	if(D3DApp::Initialize())
+	if (!D3DApp::Initialize())
 		return false;
 
 	// Reset the command list to prep for initialization commands.
@@ -315,13 +315,13 @@ void BoxApp::BuildShadersAndInputLayout()
 {
 	HRESULT hr = S_OK;
 	mvsByteCode = d3dUtil::CompileShader(
-		L"Shaders\\color.hlsl",
+		L"Specific\\Box\\Shader\\color.hlsl",
 		nullptr,
 		"VS",
 		"vs_5_0"
 	);
 	mpsByteCode = d3dUtil::CompileShader(
-		L"Shader\\color.hlsl",
+		L"Specific\\Box\\Shader\\color.hlsl",
 		nullptr,
 		"PS",
 		"ps_5_0"

@@ -1,8 +1,13 @@
 #pragma once
 
-#include"..\\..\\Common\D3DApp.h"
-#include"..\\..\\Common\MathHelper.h"
-#include"..\\..\\Common\UploadBuffer.h"
+#include "../../Common/d3dApp.h"
+#include "../../Common/MathHelper.h"
+#include "../../Common/UploadBuffer.h"
+
+using Microsoft::WRL::ComPtr;
+using namespace DirectX;
+using namespace DirectX::PackedVector;
+using namespace std;
 
 //
 //
