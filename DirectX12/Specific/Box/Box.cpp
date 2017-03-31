@@ -340,8 +340,8 @@ void BoxApp::BuildShadersAndInputLayout()
 ///////////
 void BoxApp::BuildBoxGeometry()
 {
-	//存储了正方体的8个点，每个点一种颜色
 	array<Vertex, 8> vertices = {
+		//存储了正方体的8个点，每个点一种颜色
 		Vertex({ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(Colors::White) }),
 		Vertex({ XMFLOAT3(-1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Black) }),
 		Vertex({ XMFLOAT3(+1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Red) }),
@@ -350,10 +350,18 @@ void BoxApp::BuildBoxGeometry()
 		Vertex({ XMFLOAT3(-1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Yellow) }),
 		Vertex({ XMFLOAT3(+1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Cyan) }),
 		Vertex({ XMFLOAT3(+1.0f, -1.0f, +1.0f), XMFLOAT4(Colors::Magenta) })
+
+		//存储了底面为正方形的椎体
+		/*Vertex({ XMFLOAT3(-1.0f, 0.0f, -1.0f), XMFLOAT4(Colors::Black) }),
+		Vertex({ XMFLOAT3(+1.0f, 0.0f, -1.0f), XMFLOAT4(Colors::Red) }),
+		Vertex({ XMFLOAT3(+1.0f, 0.0f, +1.0f), XMFLOAT4(Colors::Green) }),
+		Vertex({ XMFLOAT3(-1.0f, 0.0f, +1.0f), XMFLOAT4(Colors::White) }),
+		Vertex({ XMFLOAT3(0.0f, +2.0f, 0.0f), XMFLOAT4(Colors::Yellow) })*/
 	};
 
 	//存储顶点的索引，用来组成几何体
 	std::array<std::uint16_t, 36> indices = {
+		//立方体的面列表
 		// front face
 		0, 1, 2,
 		0, 2, 3,
@@ -377,6 +385,23 @@ void BoxApp::BuildBoxGeometry()
 		// bottom face
 		4, 0, 3,
 		4, 3, 7
+
+		//椎体的面列表
+		/*// front face
+		0, 4, 1,
+
+		// back face
+		2, 4, 3,
+
+		// left face
+		3, 4, 0,
+
+		// right face
+		2, 1, 4,
+
+		// bottom face
+		0, 1, 2,
+		0, 2, 3*/
 	};
 
 	//vertex buffer的尺寸
