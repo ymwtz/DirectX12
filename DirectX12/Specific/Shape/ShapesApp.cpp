@@ -1,4 +1,4 @@
-#include"ShapesApp.h"
+#include "ShapesApp.h"
 
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
@@ -62,4 +62,30 @@ void ShapesApp::Draw(const GameTimer & gt)
 
 	// Note that GPU could still be working on commands from previous frames,
 	//but that is okay, because we are not touching any frame  resources associated with those frames.
+}
+
+//
+void ShapesApp::UpdateObjectCBs(const GameTimer & gt)
+{
+	auto currObjectCB = mCurrFrameResource->ObjectCB.get();
+	for (auto& e : mAllRitems) {
+		//只有constants改变，才update cbuffer data
+		//This needs to be tracked per frame resource.
+		if (e->NumFramesDirty > 0) {
+			XMMATRIX world = XMLoadFloat4x4(&e->World);
+
+			ObjectConstants objConstants;
+			XMStoreFloat4x4(&objConstants.World, XMMatrixTranspose(world));
+
+			currObjectCB->CopyData(e->ObjectCBIndex, objConstants);
+
+			//Next FrameResource need to be updated too.
+			e->NumFramesDirty--;
+		}
+	}
+}
+
+//
+void ShapesApp::UpdateMainPassCB(const GameTimer & gt)
+{
 }

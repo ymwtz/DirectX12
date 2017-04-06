@@ -4,11 +4,23 @@
 #include"../../Common/MathHelper.h"
 #include"../../Common/UploadBuffer.h"
 
+//cb中的数据总是作为一个整体被提交给GPU，
+//这意味着即使cb中只有一个变量改变了，
+//也必须重新提交整个cb。
+//所以不要把所有变量都放到一个cb中，
+//而是按照变量改变的频率来组织变量，
+//以尽量减少带宽消耗。
+
+//per object constant buffer
+//store constants that are associated with an object
 struct ObjectConstants
 {
 	DirectX::XMFLOAT4X4 World = MathHelper::Identity4x4();
 };
 
+//this buffer stores constant data that is fixed over a given rendering pass
+//such as the eye position, the view and projection matrices, and information about the screen (render target) dimensions;
+//it also includes game timing information, which is useful data to have access to in shader programs. 
 struct PassConstants
 {
 	DirectX::XMFLOAT4X4 View = MathHelper::Identity4x4();
@@ -27,6 +39,7 @@ struct PassConstants
 	float DeltaTime = 0.0f;
 };
 
+//
 struct Vertex
 {
 	DirectX::XMFLOAT3 Pos;
