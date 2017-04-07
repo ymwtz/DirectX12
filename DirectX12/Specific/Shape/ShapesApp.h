@@ -24,7 +24,7 @@ struct RenderItem
 	int NumFramesDirty = gNumFrameResources;
 
 	// Index into GPU constant buffer corresponding to the ObjectCB for this render item.
-	UINT ObjectCBIndex = -1;
+	UINT ObjCBIndex = -1;
 
 	// Geometry associated with this render-item. Note that multiple  
 	// render-items can share the same geometry.

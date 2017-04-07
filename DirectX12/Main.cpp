@@ -1,4 +1,4 @@
-#include"Specific\Box\Box.h"
+#include"Specific\Shape\ShapesApp.h"
 
 using namespace DirectX;
 
@@ -15,7 +15,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	try
 	{
-		BoxApp theApp(hInstance);
+		ShapesApp theApp(hInstance);
 		if (!theApp.Initialize())
 			return 0;
 
