@@ -7,22 +7,58 @@ using namespace DirectX::PackedVector;
 //包含3个Frame Resource的序列
 const int gNumFrameResources = 3;
 
+//
 ShapesApp::ShapesApp(HINSTANCE hInstance)
+	: D3DApp(hInstance)
 {
 }
 
+//
 ShapesApp::~ShapesApp()
 {
+	if (md3dDevice != nullptr)
+		FlushCommandQueue();
 }
 
+//
 bool ShapesApp::Initialize()
 {
-	return false;
+	if (!D3DApp::Initialize())
+		return false;
+
+	// Reset the command list to prep for initialization commands.
+	ThrowIfFailed(mCommandList->Reset(mDirectCmdListAlloc.Get(), nullptr));
+
+	BuildRootSignature();
+	BuildShadersAndInputLayout();
+	BuildShapeGeometry();
+	BuildRenderItems();
+	BuildFrameResources();
+	BuildDescriptorHeaps();
+	BuildConstantBufferViews();
+	BuildPSOs();
+
+	// Execute the initialization commands.
+	ThrowIfFailed(mCommandList->Close());
+	ID3D12CommandList* cmdsLists[] = { mCommandList.Get() };
+	mCommandQueue->ExecuteCommandLists(_countof(cmdsLists), cmdsLists);
+
+	// Wait until initialization is complete.
+	FlushCommandQueue();
+
+	return true;
 }
 
+//
 void ShapesApp::OnResize()
 {
+	D3DApp::OnResize();
+
+	// The window resized, so update the aspect ratio and recompute the projection matrix.
+	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f*MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
+	XMStoreFloat4x4(&mProj, P);
 }
+
 
 //
 void ShapesApp::Update(const GameTimer & gt)
@@ -45,7 +81,8 @@ void ShapesApp::Update(const GameTimer & gt)
 	}
 
 	//更新mFrameResource中的resource
-
+	UpdateObjectCBs(gt);
+	UpdateMainPassCB(gt);
 }
 
 //
@@ -102,8 +139,13 @@ void ShapesApp::Draw(const GameTimer & gt)
 	DrawRenderItems(mCommandList.Get(), mOpaqueRitems);
 
 	// Indicate a state transition on the resource usage.
-	mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
-		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT));
+	mCommandList->ResourceBarrier(
+		1,
+		&CD3DX12_RESOURCE_BARRIER::Transition(
+			CurrentBackBuffer(),
+			D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT
+		)
+	);
 
 	// Done recording commands.
 	ThrowIfFailed(mCommandList->Close());
@@ -126,6 +168,80 @@ void ShapesApp::Draw(const GameTimer & gt)
 
 	// Note that GPU could still be working on commands from previous frames,
 	//but that is okay, because we are not touching any frame  resources associated with those frames.
+}
+
+//
+void ShapesApp::OnMouseDown(WPARAM btnState, int x, int y)
+{
+	mLastMousePos.x = x;
+	mLastMousePos.y = y;
+
+	SetCapture(mhMainWnd);
+}
+
+//
+void ShapesApp::OnMouseUp(WPARAM btnState, int x, int y)
+{
+	ReleaseCapture();
+}
+
+//
+void ShapesApp::OnMouseMove(WPARAM btnState, int x, int y)
+{
+	if ((btnState & MK_LBUTTON) != 0)
+	{
+		// Make each pixel correspond to a quarter of a degree.
+		float dx = XMConvertToRadians(0.25f*static_cast<float>(x - mLastMousePos.x));
+		float dy = XMConvertToRadians(0.25f*static_cast<float>(y - mLastMousePos.y));
+
+		// Update angles based on input to orbit camera around box.
+		mTheta += dx;
+		mPhi += dy;
+
+		// Restrict the angle mPhi.
+		mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi - 0.1f);
+	}
+	else if ((btnState & MK_RBUTTON) != 0)
+	{
+		// Make each pixel correspond to 0.2 unit in the scene.
+		float dx = 0.05f*static_cast<float>(x - mLastMousePos.x);
+		float dy = 0.05f*static_cast<float>(y - mLastMousePos.y);
+
+		// Update the camera radius based on input.
+		mRadius += dx - dy;
+
+		// Restrict the radius.
+		mRadius = MathHelper::Clamp(mRadius, 5.0f, 150.0f);
+	}
+
+	mLastMousePos.x = x;
+	mLastMousePos.y = y;
+}
+
+//
+void ShapesApp::OnKeyboardInput(const GameTimer & gt)
+{
+	if (GetAsyncKeyState('1') & 0x8000)
+		mIsWireframe = true;
+	else
+		mIsWireframe = false;
+}
+
+//
+void ShapesApp::UpdateCamera(const GameTimer & gt)
+{
+	// Convert Spherical to Cartesian coordinates.
+	mEyePos.x = mRadius*sinf(mPhi)*cosf(mTheta);
+	mEyePos.z = mRadius*sinf(mPhi)*sinf(mTheta);
+	mEyePos.y = mRadius*cosf(mPhi);
+
+	// Build the view matrix.
+	XMVECTOR pos = XMVectorSet(mEyePos.x, mEyePos.y, mEyePos.z, 1.0f);
+	XMVECTOR target = XMVectorZero();
+	XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+
+	XMMATRIX view = XMMatrixLookAtLH(pos, target, up);
+	XMStoreFloat4x4(&mView, view);
 }
 
 //
@@ -267,9 +383,11 @@ void ShapesApp::BuildConstantBufferViews()
 void ShapesApp::BuildRootSignature()
 {
 	CD3DX12_DESCRIPTOR_RANGE cbvTable0;
+	//b0
 	cbvTable0.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
 
 	CD3DX12_DESCRIPTOR_RANGE cbvTable1;
+	//b1
 	cbvTable1.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
 
 	// Root parameter can be a table, root descriptor or root constants.
@@ -287,6 +405,38 @@ void ShapesApp::BuildRootSignature()
 		nullptr,
 		D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT
 	);
+
+	// create a root signature with a single slot which points to a descriptor range consisting of a single constant buffer
+	ComPtr<ID3DBlob> serializedRootSig = nullptr;
+	ComPtr<ID3DBlob> errorBlob = nullptr;
+	HRESULT hr = D3D12SerializeRootSignature(&rootSigDesc, D3D_ROOT_SIGNATURE_VERSION_1,
+		serializedRootSig.GetAddressOf(), errorBlob.GetAddressOf());
+
+	if (errorBlob != nullptr)
+	{
+		::OutputDebugStringA((char*)errorBlob->GetBufferPointer());
+	}
+	ThrowIfFailed(hr);
+
+	ThrowIfFailed(md3dDevice->CreateRootSignature(
+		0,
+		serializedRootSig->GetBufferPointer(),
+		serializedRootSig->GetBufferSize(),
+		IID_PPV_ARGS(mRootSignature.GetAddressOf())
+	));
+}
+
+//
+void ShapesApp::BuildShadersAndInputLayout()
+{
+	mShaders["standardVS"] = d3dUtil::CompileShader(L"Specific\\Shape\\Shaders\\color.hlsl", nullptr, "VS", "vs_5_0");
+	mShaders["opaquePS"] = d3dUtil::CompileShader(L"Specific\\Shape\\Shaders\\color.hlsl", nullptr, "PS", "ps_5_0");
+
+	mInputLayout =
+	{
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+	};
 }
 
 //
@@ -416,6 +566,50 @@ void ShapesApp::BuildShapeGeometry()
 }
 
 //
+void ShapesApp::BuildPSOs()
+{
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC opaquePsoDesc;
+
+	//
+	// PSO for opaque objects.
+	//
+	ZeroMemory(&opaquePsoDesc, sizeof(D3D12_GRAPHICS_PIPELINE_STATE_DESC));
+	opaquePsoDesc.InputLayout = { mInputLayout.data(), (UINT)mInputLayout.size() };
+	opaquePsoDesc.pRootSignature = mRootSignature.Get();
+	opaquePsoDesc.VS =
+	{
+		reinterpret_cast<BYTE*>(mShaders["standardVS"]->GetBufferPointer()),
+		mShaders["standardVS"]->GetBufferSize()
+	};
+	opaquePsoDesc.PS =
+	{
+		reinterpret_cast<BYTE*>(mShaders["opaquePS"]->GetBufferPointer()),
+		mShaders["opaquePS"]->GetBufferSize()
+	};
+	opaquePsoDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
+	opaquePsoDesc.RasterizerState.FillMode = D3D12_FILL_MODE_WIREFRAME;
+	opaquePsoDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
+	opaquePsoDesc.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
+	opaquePsoDesc.SampleMask = UINT_MAX;
+	opaquePsoDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
+	opaquePsoDesc.NumRenderTargets = 1;
+	opaquePsoDesc.RTVFormats[0] = mBackBufferFormat;
+	opaquePsoDesc.SampleDesc.Count = m4xMsaaState ? 4 : 1;
+	opaquePsoDesc.SampleDesc.Quality = m4xMsaaState ? (m4xMsaaQuality - 1) : 0;
+	opaquePsoDesc.DSVFormat = mDepthStencilFormat;
+	ThrowIfFailed(md3dDevice->CreateGraphicsPipelineState(&opaquePsoDesc, IID_PPV_ARGS(&mPSOs["opaque"])));
+
+
+	//
+	// PSO for opaque wireframe objects.
+	//
+
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC opaqueWireframePsoDesc = opaquePsoDesc;
+	opaqueWireframePsoDesc.RasterizerState.FillMode = D3D12_FILL_MODE_WIREFRAME;
+	ThrowIfFailed(md3dDevice->CreateGraphicsPipelineState(&opaqueWireframePsoDesc, IID_PPV_ARGS(&mPSOs["opaque_wireframe"])));
+}
+
+//
 //创建包含3个Frame Resource的序列
 //
 void ShapesApp::BuildFrameResources()
@@ -512,6 +706,10 @@ void ShapesApp::BuildRenderItems()
 		mAllRitems.push_back(std::move(leftSphereRitem));
 		mAllRitems.push_back(std::move(rightSphereRitem));
 	}
+
+	// All the render items are opaque.
+	for (auto& e : mAllRitems)
+		mOpaqueRitems.push_back(e.get());
 }
 
 //

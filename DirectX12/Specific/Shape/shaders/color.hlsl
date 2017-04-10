@@ -47,5 +47,12 @@ VertexOut VS(VertexIn vin) {
 
 	//Just pass vertex color into the pixel shader
 	vout.Color = vin.Color;
+
+	return vout;
+}
+
+float4 PS(VertexOut pin) : SV_Target
+{
+	return pin.Color;
 }
 
