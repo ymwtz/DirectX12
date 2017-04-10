@@ -155,18 +155,21 @@
     <ClCompile Include="Common\GeometryGenerator.cpp" />
     <ClCompile Include="Common\MathHelper.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Specific\Shape\FrameResource.cpp" />
-    <ClCompile Include="Specific\Shape\ShapesApp.cpp" />
+    <ClCompile Include="Specific\LandAndWaves\FrameResource.cpp" />
+    <ClCompile Include="Specific\LandAndWaves\LandAndWavesApp.cpp" />
+    <ClCompile Include="Specific\LandAndWaves\Waves.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\D3DApp.h" />
     <ClInclude Include="Common\D3DUtil.h" />
+    <ClInclude Include="Common\d3dx12.h" />
     <ClInclude Include="Common\GameTimer.h" />
     <ClInclude Include="Common\GeometryGenerator.h" />
     <ClInclude Include="Common\MathHelper.h" />
     <ClInclude Include="Common\UploadBuffer.h" />
-    <ClInclude Include="Specific\Shape\FrameResource.h" />
-    <ClInclude Include="Specific\Shape\ShapesApp.h" />
+    <ClInclude Include="Specific\LandAndWaves\FrameResource.h" />
+    <ClInclude Include="Specific\LandAndWaves\LandAndWavesApp.h" />
+    <ClInclude Include="Specific\LandAndWaves\Waves.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

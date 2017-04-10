@@ -1,69 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="资源文件">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{9040b05d-b67b-469b-827f-52b9e0dfe65d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Specific">
+      <UniqueIdentifier>{3eb4c77c-d083-4164-bc7d-456fc1da6f6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\源文件">
+      <UniqueIdentifier>{0507510e-cc56-4edb-8789-aaa832e45d20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\头文件">
+      <UniqueIdentifier>{452708d8-17a5-420a-9401-90388a9c8d64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Specific\源文件">
+      <UniqueIdentifier>{8f27092f-5810-4965-a255-5f82c816dbe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Specific\头文件">
+      <UniqueIdentifier>{ab3ba7a5-282e-4627-9836-337bcc7eccc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="Common\D3DApp.cpp">
+      <Filter>Common\源文件</Filter>
     </ClCompile>
     <ClCompile Include="Common\D3DUtil.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Common\源文件</Filter>
     </ClCompile>
     <ClCompile Include="Common\GameTimer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\MathHelper.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\D3DApp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Specific\Shape\FrameResource.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Specific\Shape\ShapesApp.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Common\源文件</Filter>
     </ClCompile>
     <ClCompile Include="Common\GeometryGenerator.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Common\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\MathHelper.cpp">
+      <Filter>Common\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Specific\LandAndWaves\FrameResource.cpp">
+      <Filter>Specific\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Specific\LandAndWaves\Waves.cpp">
+      <Filter>Specific\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Specific\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Specific\LandAndWaves\LandAndWavesApp.cpp">
+      <Filter>Specific\源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common\D3DUtil.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\UploadBuffer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Common\D3DApp.h">
-      <Filter>头文件</Filter>
+      <Filter>Common\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\D3DUtil.h">
+      <Filter>Common\头文件</Filter>
     </ClInclude>
     <ClInclude Include="Common\GameTimer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\MathHelper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Specific\Shape\FrameResource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Specific\Shape\ShapesApp.h">
-      <Filter>头文件</Filter>
+      <Filter>Common\头文件</Filter>
     </ClInclude>
     <ClInclude Include="Common\GeometryGenerator.h">
-      <Filter>头文件</Filter>
+      <Filter>Common\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\MathHelper.h">
+      <Filter>Common\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\UploadBuffer.h">
+      <Filter>Common\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Specific\LandAndWaves\FrameResource.h">
+      <Filter>Specific\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Specific\LandAndWaves\Waves.h">
+      <Filter>Specific\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\d3dx12.h">
+      <Filter>Common\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Specific\LandAndWaves\LandAndWavesApp.h">
+      <Filter>Specific\头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

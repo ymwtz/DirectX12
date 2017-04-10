@@ -1,4 +1,4 @@
-#include"Specific\Shape\ShapesApp.h"
+#include "Specific\LandAndWaves\LandAndWavesApp.h"
 
 using namespace DirectX;
 
@@ -15,7 +15,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	try
 	{
-		ShapesApp theApp(hInstance);
+		LandAndWavesApp theApp(hInstance);
 		if (!theApp.Initialize())
 			return 0;
 
