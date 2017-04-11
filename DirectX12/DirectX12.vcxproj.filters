@@ -40,16 +40,16 @@
     <ClCompile Include="Common\MathHelper.cpp">
       <Filter>Common\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Specific\LandAndWaves\FrameResource.cpp">
+    <ClCompile Include="Common\DDSTextureLoader.cpp">
+      <Filter>Common\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Specific\LightColums\FrameResource.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Specific\LandAndWaves\Waves.cpp">
+    <ClCompile Include="Specific\LightColums\LightColumsApp.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Specific\源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Specific\LandAndWaves\LandAndWavesApp.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,16 +72,16 @@
     <ClInclude Include="Common\UploadBuffer.h">
       <Filter>Common\头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Specific\LandAndWaves\FrameResource.h">
-      <Filter>Specific\头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Specific\LandAndWaves\Waves.h">
-      <Filter>Specific\头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Common\d3dx12.h">
       <Filter>Common\头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Specific\LandAndWaves\LandAndWavesApp.h">
+    <ClInclude Include="Common\DDSTextureLoader.h">
+      <Filter>Common\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Specific\LightColums\FrameResource.h">
+      <Filter>Specific\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Specific\LightColums\LightColumsApp.h">
       <Filter>Specific\头文件</Filter>
     </ClInclude>
   </ItemGroup>
