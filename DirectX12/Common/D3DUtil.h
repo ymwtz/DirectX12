@@ -152,6 +152,7 @@ struct SubmeshGeometry
 	DirectX::BoundingBox Bounds;
 };
 
+//
 struct MeshGeometry
 {
 	// Give it a name so we can look it up by name.
@@ -207,6 +208,7 @@ struct MeshGeometry
 	}
 };
 
+//
 struct Light
 {
     DirectX::XMFLOAT3 Strength = { 0.5f, 0.5f, 0.5f };
@@ -219,6 +221,7 @@ struct Light
 
 #define MaxLights 16
 
+//
 struct MaterialConstants
 {
 	DirectX::XMFLOAT4 DiffuseAlbedo = { 1.0f, 1.0f, 1.0f, 1.0f };

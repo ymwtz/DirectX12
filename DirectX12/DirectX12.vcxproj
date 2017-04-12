@@ -156,8 +156,9 @@
     <ClCompile Include="Common\GeometryGenerator.cpp" />
     <ClCompile Include="Common\MathHelper.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Specific\LightColums\FrameResource.cpp" />
-    <ClCompile Include="Specific\LightColums\LightColumsApp.cpp" />
+    <ClCompile Include="Specific\LightWaves\FrameResource.cpp" />
+    <ClCompile Include="Specific\LightWaves\LightWavesApp.cpp" />
+    <ClCompile Include="Specific\LightWaves\Waves.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\D3DApp.h" />
@@ -168,8 +169,9 @@
     <ClInclude Include="Common\GeometryGenerator.h" />
     <ClInclude Include="Common\MathHelper.h" />
     <ClInclude Include="Common\UploadBuffer.h" />
-    <ClInclude Include="Specific\LightColums\FrameResource.h" />
-    <ClInclude Include="Specific\LightColums\LightColumsApp.h" />
+    <ClInclude Include="Specific\LightWaves\FrameResource.h" />
+    <ClInclude Include="Specific\LightWaves\LightWavesApp.h" />
+    <ClInclude Include="Specific\LightWaves\Waves.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
