@@ -1,5 +1,4 @@
-#include "Specific\LandAndWaves\LandAndWavesApp.h"
-
+#include "Specific\LightWaves\LightWavesApp.h"
 using namespace DirectX;
 
 //////////////////
@@ -15,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	try
 	{
-		LandAndWavesApp theApp(hInstance);
+		LitWavesApp theApp(hInstance);
 		if (!theApp.Initialize())
 			return 0;
 
