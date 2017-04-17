@@ -46,13 +46,10 @@
     <ClCompile Include="Main.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Specific\LightWaves\LightWavesApp.cpp">
+    <ClCompile Include="Specific\TexturedCrate\CrateApp.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Specific\LightWaves\Waves.cpp">
-      <Filter>Specific\源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Specific\LightWaves\FrameResource.cpp">
+    <ClCompile Include="Specific\TexturedCrate\FrameResource.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -81,13 +78,10 @@
     <ClInclude Include="Common\DDSTextureLoader.h">
       <Filter>Common\头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Specific\LightWaves\LightWavesApp.h">
+    <ClInclude Include="Specific\TexturedCrate\CrateApp.h">
       <Filter>Specific\头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Specific\LightWaves\Waves.h">
-      <Filter>Specific\头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Specific\LightWaves\FrameResource.h">
+    <ClInclude Include="Specific\TexturedCrate\FrameResource.h">
       <Filter>Specific\头文件</Filter>
     </ClInclude>
   </ItemGroup>
