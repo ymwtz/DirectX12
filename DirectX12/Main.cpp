@@ -1,4 +1,4 @@
-#include "Specific\TexturedCrate\CrateApp.h"
+#include "Specific\TexturedWaves\TexWavesApp.h"
 using namespace DirectX;
 
 //////////////////
@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	try
 	{
-		CrateApp theApp(hInstance);
+		TexWavesApp theApp(hInstance);
 		if (!theApp.Initialize())
 			return 0;
 

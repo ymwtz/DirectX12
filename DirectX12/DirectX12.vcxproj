@@ -156,8 +156,9 @@
     <ClCompile Include="Common\GeometryGenerator.cpp" />
     <ClCompile Include="Common\MathHelper.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Specific\TexturedCrate\CrateApp.cpp" />
-    <ClCompile Include="Specific\TexturedCrate\FrameResource.cpp" />
+    <ClCompile Include="Specific\TexturedWaves\FrameResource.cpp" />
+    <ClCompile Include="Specific\TexturedWaves\TexWavesApp.cpp" />
+    <ClCompile Include="Specific\TexturedWaves\Waves.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\D3DApp.h" />
@@ -168,8 +169,9 @@
     <ClInclude Include="Common\GeometryGenerator.h" />
     <ClInclude Include="Common\MathHelper.h" />
     <ClInclude Include="Common\UploadBuffer.h" />
-    <ClInclude Include="Specific\TexturedCrate\CrateApp.h" />
-    <ClInclude Include="Specific\TexturedCrate\FrameResource.h" />
+    <ClInclude Include="Specific\TexturedWaves\FrameResource.h" />
+    <ClInclude Include="Specific\TexturedWaves\TexWavesApp.h" />
+    <ClInclude Include="Specific\TexturedWaves\Waves.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
