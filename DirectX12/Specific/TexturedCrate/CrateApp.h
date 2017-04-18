@@ -6,7 +6,9 @@
 #include "../../Common/GeometryGenerator.h"
 #include "FrameResource.h"
 
-extern const int gNumFrameResources = 3;
+using Microsoft::WRL::ComPtr;
+using namespace DirectX;
+using namespace DirectX::PackedVector;
 
 // Lightweight structure stores parameters to draw a shape.  This will
 // vary from app-to-app.

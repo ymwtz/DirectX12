@@ -319,7 +319,8 @@ void CrateApp::UpdateMainPassCB(const GameTimer& gt)
 void CrateApp::LoadTextures()
 {
 	auto woodCrateTex = std::make_unique<Texture>();
-	woodCrateTex->Filename = L"Texture/WoodCrate01.dds";
+	woodCrateTex->Name = "woodCrateTex";
+	woodCrateTex->Filename = L"Textures/WoodCrate01.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(
 		md3dDevice.Get(),
 		mCommandList.Get(),
@@ -368,7 +369,7 @@ void CrateApp::BuildRootSignature()
 	);
 
 	if (errorBlob != nullptr) {
-		::OutputDebugString((char*)errorBlob->GetBufferPointer());
+		::OutputDebugStringA((char*)errorBlob->GetBufferPointer());
 	}
 	ThrowIfFailed(hr);
 

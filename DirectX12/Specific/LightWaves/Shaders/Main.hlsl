@@ -12,18 +12,20 @@
 #endif
 
 //
-#include "LightUtil.hlsl"
+#include "LightingUtil.hlsl"
 
 //
 Texture2D gDiffuseMap : register(t0);
 
 //6种静态sampler
-SamplerState gsamPointWrap : register(s0);
-SamplerState gsamPointClamp : register(s1);
-SamplerState gsamLinearWrap : register(s2);
-SamplerState gsamLinearClamp : register(s3);
-SamplerState gsamAnisotropicWrap : register(s4);
-SamplerState gsamAnisotropicClamp : register(s5);
+//SamplerState gsamPointWrap : register(s0);
+//SamplerState gsamPointClamp : register(s1);
+//SamplerState gsamLinearWrap : register(s2);
+//SamplerState gsamLinearClamp : register(s3);
+//SamplerState gsamAnisotropicWrap : register(s4);
+//SamplerState gsamAnisotropicClamp : register(s5);
+
+SamplerState gsamLinear  : register(s0);
 
 //Constant data that varies per frame
 cbuffer cbPerObject : register(b0)
@@ -106,7 +108,7 @@ VertexOut VS(VertexIn vin)
 
 float4 PS(VertexOut pin):SV_Target
 {
-    float4 diffuseAlbedo = gDiffuseMap.Sample(gsamAnisotropicWrap, pin.TexC) * gDiffuseAlbedo;
+	float4 diffuseAlbedo = gDiffuseMap.Sample(gsamLinear, pin.TexC) * gDiffuseAlbedo;
 
 	//插值生成的normal可能是非归一化的
 	//所以对点的法向量进行归一化
@@ -116,18 +118,18 @@ float4 PS(VertexOut pin):SV_Target
 	float3 toEyeW = normalize(gEyePosW - pin.PosW);
 
 	//Indirect Lighting(环境光)
-	float4 ambient = gAmbientLight * gDiffuseAlbedo;
+	float4 ambient = gAmbientLight * diffuseAlbedo;
 
 	//Direct Lighting
 	const float shiniess = 1.0f - gRoughness;
-	Material mat = { gDiffuseAlbedo, gFresnelR0, shiniess };
+	Material mat = { diffuseAlbedo, gFresnelR0, shiniess };
 	float3 shadowFactor = 1.0f;
 	float4 directLight = ComputeLighting(gLights, mat, pin.PosW, pin.NormalW, toEyeW, shadowFactor);
 
 	float4 litColor = ambient + directLight;
 
 	//
-	litColor.a = gDiffuseAlbedo.a;
+	litColor.a = diffuseAlbedo.a;
 
 	return litColor;
 }
