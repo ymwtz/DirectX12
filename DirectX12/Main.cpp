@@ -1,4 +1,4 @@
-#include "Specific\LightWaves\LightWavesApp.h"
+#include "Specific\TexturedCrate\CrateApp.h"
 using namespace DirectX;
 
 //////////////////
@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	try
 	{
-		LitWavesApp theApp(hInstance);
+		CrateApp theApp(hInstance);
 		if (!theApp.Initialize())
 			return 0;
 
