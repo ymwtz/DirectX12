@@ -1,4 +1,4 @@
-#include "Specific\TexturedWaves\TexWavesApp.h"
+#include "Specific\BlendDemo\BlendDemo.h"
 using namespace DirectX;
 
 //////////////////
@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	try
 	{
-		TexWavesApp theApp(hInstance);
+		BlendApp theApp(hInstance);
 		if (!theApp.Initialize())
 			return 0;
 

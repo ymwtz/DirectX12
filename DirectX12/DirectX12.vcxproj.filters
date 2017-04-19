@@ -28,15 +28,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Specific\TexturedWaves\FrameResource.cpp">
-      <Filter>Specific\源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Specific\TexturedWaves\Waves.cpp">
-      <Filter>Specific\源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Specific\TexturedWaves\TexWavesApp.cpp">
-      <Filter>Specific\源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Common\D3DApp.cpp">
       <Filter>Common\源文件</Filter>
     </ClCompile>
@@ -55,17 +46,17 @@
     <ClCompile Include="Common\MathHelper.cpp">
       <Filter>Common\源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Specific\BlendDemo\BlendDemo.cpp">
+      <Filter>Specific\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Specific\BlendDemo\FrameResource.cpp">
+      <Filter>Specific\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Specific\BlendDemo\Waves.cpp">
+      <Filter>Specific\源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Specific\TexturedWaves\FrameResource.h">
-      <Filter>Specific\头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Specific\TexturedWaves\Waves.h">
-      <Filter>Specific\头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Specific\TexturedWaves\TexWavesApp.h">
-      <Filter>Specific\头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Common\D3DApp.h">
       <Filter>Common\头文件</Filter>
     </ClInclude>
@@ -89,6 +80,15 @@
     </ClInclude>
     <ClInclude Include="Common\UploadBuffer.h">
       <Filter>Common\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Specific\BlendDemo\BlendDemo.h">
+      <Filter>Specific\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Specific\BlendDemo\FrameResource.h">
+      <Filter>Specific\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Specific\BlendDemo\Waves.h">
+      <Filter>Specific\头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
