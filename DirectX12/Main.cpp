@@ -1,4 +1,4 @@
-#include "Specific\BlendDemo\BlendDemo.h"
+#include "Specific\StencilDemo\StencilApp.h"
 using namespace DirectX;
 
 //////////////////
@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	try
 	{
-		BlendApp theApp(hInstance);
+		StencilApp theApp(hInstance);
 		if (!theApp.Initialize())
 			return 0;
 

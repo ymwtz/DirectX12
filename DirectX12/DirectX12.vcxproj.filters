@@ -46,13 +46,10 @@
     <ClCompile Include="Common\MathHelper.cpp">
       <Filter>Common\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Specific\BlendDemo\BlendDemo.cpp">
+    <ClCompile Include="Specific\StencilDemo\FrameResource.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Specific\BlendDemo\FrameResource.cpp">
-      <Filter>Specific\源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Specific\BlendDemo\Waves.cpp">
+    <ClCompile Include="Specific\StencilDemo\StencilApp.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -81,13 +78,10 @@
     <ClInclude Include="Common\UploadBuffer.h">
       <Filter>Common\头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Specific\BlendDemo\BlendDemo.h">
+    <ClInclude Include="Specific\StencilDemo\FrameResource.h">
       <Filter>Specific\头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Specific\BlendDemo\FrameResource.h">
-      <Filter>Specific\头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Specific\BlendDemo\Waves.h">
+    <ClInclude Include="Specific\StencilDemo\StencilApp.h">
       <Filter>Specific\头文件</Filter>
     </ClInclude>
   </ItemGroup>

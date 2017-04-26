@@ -156,9 +156,8 @@
     <ClCompile Include="Common\GeometryGenerator.cpp" />
     <ClCompile Include="Common\MathHelper.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Specific\BlendDemo\BlendDemo.cpp" />
-    <ClCompile Include="Specific\BlendDemo\FrameResource.cpp" />
-    <ClCompile Include="Specific\BlendDemo\Waves.cpp" />
+    <ClCompile Include="Specific\StencilDemo\FrameResource.cpp" />
+    <ClCompile Include="Specific\StencilDemo\StencilApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\D3DApp.h" />
@@ -169,9 +168,8 @@
     <ClInclude Include="Common\GeometryGenerator.h" />
     <ClInclude Include="Common\MathHelper.h" />
     <ClInclude Include="Common\UploadBuffer.h" />
-    <ClInclude Include="Specific\BlendDemo\BlendDemo.h" />
-    <ClInclude Include="Specific\BlendDemo\FrameResource.h" />
-    <ClInclude Include="Specific\BlendDemo\Waves.h" />
+    <ClInclude Include="Specific\StencilDemo\FrameResource.h" />
+    <ClInclude Include="Specific\StencilDemo\StencilApp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
