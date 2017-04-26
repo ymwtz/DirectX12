@@ -1,4 +1,4 @@
-#include "Specific\StencilDemo\StencilApp.h"
+#include "Specific\TreeBillboards\TreeBillboardsApp.h"
 using namespace DirectX;
 
 //////////////////
@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	try
 	{
-		StencilApp theApp(hInstance);
+		TreeBillboardsApp theApp(hInstance);
 		if (!theApp.Initialize())
 			return 0;
 
