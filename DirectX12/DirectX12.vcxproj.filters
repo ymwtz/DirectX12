@@ -46,10 +46,13 @@
     <ClCompile Include="Common\MathHelper.cpp">
       <Filter>Common\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Specific\StencilDemo\FrameResource.cpp">
+    <ClCompile Include="Specific\TreeBillboards\FrameResource.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Specific\StencilDemo\StencilApp.cpp">
+    <ClCompile Include="Specific\TreeBillboards\TreeBillboardsApp.cpp">
+      <Filter>Specific\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Specific\TreeBillboards\Waves.cpp">
       <Filter>Specific\源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,10 +81,13 @@
     <ClInclude Include="Common\UploadBuffer.h">
       <Filter>Common\头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Specific\StencilDemo\FrameResource.h">
+    <ClInclude Include="Specific\TreeBillboards\FrameResource.h">
       <Filter>Specific\头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Specific\StencilDemo\StencilApp.h">
+    <ClInclude Include="Specific\TreeBillboards\TreeBillboardsApp.h">
+      <Filter>Specific\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Specific\TreeBillboards\Waves.h">
       <Filter>Specific\头文件</Filter>
     </ClInclude>
   </ItemGroup>
